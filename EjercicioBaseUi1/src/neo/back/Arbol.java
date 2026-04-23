@@ -252,13 +252,14 @@ public class Arbol {
     /**
 	 * @description Metodo que recorre el arbol para hallar el valor mayor
 	 */
-    public void mayorValorl() {
+    public int mayorValorl() {
         if (raiz!=null) {
             Nodo nodoAuxiliar=raiz;
             while (nodoAuxiliar.getNodoDerecho()!=null)
             	nodoAuxiliar=nodoAuxiliar.getNodoDerecho();
-            System.out.println("Mayor valor del árbol:"+nodoAuxiliar.getValor());
+            return nodoAuxiliar.getValor();
         }
+        return 0;
     }
     
     /**
@@ -267,7 +268,9 @@ public class Arbol {
     public void borrarMenor() {
         if (raiz!=null) {
             if (raiz.getNodoIzquierdo()==null)
-                raiz=raiz.getNodoDerecho();
+            	raiz=raiz.getNodoDerecho();
+            	
+            
             else {
                 Nodo nodoAtras=raiz;
                 Nodo nodoAuxiliar=raiz.getNodoIzquierdo();

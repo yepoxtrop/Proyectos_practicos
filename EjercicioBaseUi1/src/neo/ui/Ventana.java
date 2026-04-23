@@ -2,6 +2,7 @@
 package neo.ui;
 /** Clases */
 import java.awt.EventQueue;  
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -73,26 +74,47 @@ public class Ventana extends JFrame {
 		setContentPane(panelContendor);
 		panelContendor.setLayout(null);
 		
-		/** Contedor de las vistas 
+		/** Contenedor de las vistas 
 		 * */
-		
-		
 		JPanel panelMain = new JPanel();
 		panelMain.setBounds(175, 0, 359, 403);
 		panelContendor.add(panelMain);
-		panelMain.setLayout(new CardLayout(0, 0));
+		CardLayout layoutVentana = new CardLayout(0,0);
+		panelMain.setLayout(layoutVentana);
 		
-		InsertarNodos vistaInsertarNodo = new InsertarNodos(arbol);
+		InsertarNodos vistaInsertarNodo = new InsertarNodos(arbol, this);
 		panelMain.add(vistaInsertarNodo, "insertarNodo");
+		
+		ImprimirInOrden vistaConsulta1 = new ImprimirInOrden(arbol, this);
+		panelMain.add(vistaConsulta1, "imprimirInOrden");
+		
+		ImprimirConNivel vistaConsulta2 = new ImprimirConNivel(arbol, this);
+		panelMain.add(vistaConsulta2, "imprimirConNivel");
+		
+		TotalNodos vistaTotalNodos = new TotalNodos(arbol, this);
+		panelMain.add(vistaTotalNodos, "totalNodos");
+		
+		TotalNodosHoja vistaTotalNodosHoja = new TotalNodosHoja(arbol, this);
+		panelMain.add(vistaTotalNodosHoja, "totalNodosHoja");
+		
+		AlturaArbol vistaAlturaAbol = new AlturaArbol(arbol, this);
+		panelMain.add(vistaAlturaAbol, "alturaArbol");
+		
+		ValorMayor vistaMayorValor = new  ValorMayor(arbol, this);
+		panelMain.add(vistaMayorValor, "mayorValor");
+		
+		EliminarNodo vistaEliminarValorMenor = new EliminarNodo(arbol, this);
+		panelMain.add(vistaEliminarValorMenor, "eliminarValorMenor");
 		
 		ExitApp vistaSalir = new ExitApp(this);
 		panelMain.add(vistaSalir, "salir");
 		
 		
 		
+		
 
 		/** Menu */
-		Menu menu = new Menu(panelMain);
+		Menu menu = new Menu(panelMain, layoutVentana);
 		panelContendor.add(menu);
 		
 	}
