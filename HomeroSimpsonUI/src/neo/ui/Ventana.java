@@ -62,7 +62,7 @@ public class Ventana extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 548, 440);
-		setTitle("Practica de Árboles");
+		setTitle("Trabajos de Homero Simpson");
 		
 		/** Panel principal 
 		 * -Contiene el menu.

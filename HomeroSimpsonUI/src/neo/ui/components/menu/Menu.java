@@ -75,7 +75,7 @@ public class Menu extends JPanel {
 		JButton btnTotalDeNodos = new JButton("Total de Trabajos");
 		btnTotalDeNodos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layoutPanel.show(panelVistas, "totalNodosHoja");
+				layoutPanel.show(panelVistas, "totalNodos");
 			}
 		});
 		add(btnTotalDeNodos);
@@ -83,7 +83,7 @@ public class Menu extends JPanel {
 		JButton btnTrabajoMayor = new JButton("Trabajo Mayor");
 		btnTrabajoMayor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layoutPanel.show(panelVistas, "alturaArbol");
+				layoutPanel.show(panelVistas, "mayorValor");
 			}
 		});
 		add(btnTrabajoMayor);
