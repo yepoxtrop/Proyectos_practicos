@@ -42,8 +42,8 @@ public class Ventana extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Arbol arbol= new Arbol ();
-					Ventana frame = new Ventana(arbol);
+					HomeroSimpson homeroSimpson= new HomeroSimpson();
+					Ventana frame = new Ventana(homeroSimpson);
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -56,7 +56,7 @@ public class Ventana extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ventana(Arbol arbol) {
+	public Ventana(HomeroSimpson homeroSimpson) {
 		
 		/** Propiedades de la ventana */
 		setResizable(false);
@@ -82,28 +82,28 @@ public class Ventana extends JFrame {
 		CardLayout layoutVentana = new CardLayout(0,0);
 		panelMain.setLayout(layoutVentana);
 		
-		InsertarNodos vistaInsertarNodo = new InsertarNodos(arbol, this);
+		InsertarNodos vistaInsertarNodo = new InsertarNodos(homeroSimpson, this);
 		panelMain.add(vistaInsertarNodo, "insertarNodo");
 		
-		ImprimirInOrden vistaConsulta1 = new ImprimirInOrden(arbol, this);
+		ImprimirInOrden vistaConsulta1 = new ImprimirInOrden(homeroSimpson, this);
 		panelMain.add(vistaConsulta1, "imprimirInOrden");
 		
-		ImprimirConNivel vistaConsulta2 = new ImprimirConNivel(arbol, this);
+		ImprimirConNivel vistaConsulta2 = new ImprimirConNivel(homeroSimpson, this);
 		panelMain.add(vistaConsulta2, "imprimirConNivel");
 		
-		TotalNodos vistaTotalNodos = new TotalNodos(arbol, this);
+		TotalNodos vistaTotalNodos = new TotalNodos(homeroSimpson, this);
 		panelMain.add(vistaTotalNodos, "totalNodos");
 		
-		TotalNodosHoja vistaTotalNodosHoja = new TotalNodosHoja(arbol, this);
+		TotalNodosHoja vistaTotalNodosHoja = new TotalNodosHoja(homeroSimpson, this);
 		panelMain.add(vistaTotalNodosHoja, "totalNodosHoja");
 		
-		AlturaArbol vistaAlturaAbol = new AlturaArbol(arbol, this);
-		panelMain.add(vistaAlturaAbol, "alturaArbol");
+		AlturahomeroSimpson vistaAlturaAbol = new AlturahomeroSimpson(homeroSimpson, this);
+		panelMain.add(vistaAlturaAbol, "alturahomeroSimpson");
 		
-		ValorMayor vistaMayorValor = new  ValorMayor(arbol, this);
+		ValorMenor vistaMayorValor = new  ValorMenor(homeroSimpson, this);
 		panelMain.add(vistaMayorValor, "mayorValor");
 		
-		EliminarNodo vistaEliminarValorMenor = new EliminarNodo(arbol, this);
+		EliminarNodo vistaEliminarValorMenor = new EliminarNodo(homeroSimpson, this);
 		panelMain.add(vistaEliminarValorMenor, "eliminarValorMenor");
 		
 		ExitApp vistaSalir = new ExitApp(this);

@@ -172,7 +172,7 @@ public class HomeroSimpson {
         if (nodo != null){
         	
         	/* Validar si el nodo refencia tiene un tiempo mayor */
-            if (nodo.getDuracionTrabajo() > valorActual) {
+            if (nodo.getDuracionTrabajo() < valorActual) {
                 valorActual = nodo.getDuracionTrabajo();
             }
             
