@@ -1,6 +1,6 @@
 /** Paquetes */
 package neo.back;
-import neo.back.Nodo;
+import neo.back.*;
 
 /**
  * @author Luis Angel Sarmiento Diaz
@@ -143,19 +143,24 @@ public class Arbol {
 	 * @description Metodo que imprimir en inOrden segun un nodo de referencia
 	 * @param nodoBase {Nodo} nodo de referencia
 	 */
-    private void imprimirEntre (Nodo nodoBase)  {
-        if (nodoBase != null)  {    
-            imprimirEntre (nodoBase.getNodoIzquierdo());
-            System.out.println(nodoBase.getValor());
-            imprimirEntre (nodoBase.getNodoDerecho());
+    private int  imprimirEntre (Nodo nodoBase, int[]valor, int posicion)  {
+    	
+    	if (nodoBase != null) {
+            posicion = imprimirEntre(nodoBase.getNodoIzquierdo(), valor, posicion);
+            valor[posicion] = nodoBase.getValor();
+            posicion++;
+            posicion = imprimirEntre(nodoBase.getNodoDerecho(), valor, posicion);
         }
+        return posicion;
     }
 
     /**
 	 * @description Metodo que imprimir en inOrden desde la raiz
 	 */
-    public void imprimirEntre () {
-        imprimirEntre (raiz);
+    public int[] imprimirEntre () {
+        int[] datos = new int[cantidad()];
+         imprimirEntre(raiz, datos, 0);
+         return datos;
     }
 
 	/**
@@ -210,19 +215,30 @@ public class Arbol {
 	 * @param nodoBase {Nodo} Nodo de referencia
 	 * @param nivel {int} Nivel base
 	 */
-    private void imprimirEntreConNivel (Nodo nodoBase,int nivel)  {
-        if (nodoBase != null) {    
-            imprimirEntreConNivel (nodoBase.getNodoIzquierdo(),nivel+1);
-            System.out.println(nodoBase.getValor()+ " ("+nivel+") - ");
-            imprimirEntreConNivel (nodoBase.getNodoDerecho(),nivel+1);
+    private int imprimirEntreConNivel (Nodo nodoBase,int nivel, int[] arrelgoValores, int[]arregloNiveles, int posicion)  {
+    	
+    	if (nodoBase != null) {
+            posicion = imprimirEntreConNivel(nodoBase.getNodoIzquierdo(), nivel+1, arrelgoValores, arregloNiveles, posicion);
+            arrelgoValores[posicion] = nodoBase.getValor();
+            arregloNiveles[posicion] = nivel;
+            posicion++;
+            posicion = imprimirEntreConNivel(nodoBase.getNodoDerecho(), nivel+1, arrelgoValores, arregloNiveles, posicion);
         }
+        return posicion;
+    	
+        
     }
 
     /**
 	 * @description Meodo que imprime inOrden teniendo en cuenta los niveles del arbol, inciandod desde la raiz(1)
 	 */
-    public void imprimirEntreConNivel () {
-        imprimirEntreConNivel (raiz,1);
+
+    
+    public Resultado imprimirEntreConNivel () {
+    	int[] datos1 = new int[cantidad()];
+    	int[] datos2 = new int[cantidad()];
+        imprimirEntreConNivel (raiz,1, datos1, datos2, 0);
+        return new Resultado(datos1, datos2);
     }
     
     /**

@@ -12,6 +12,9 @@ import neo.back.Arbol;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ImprimirInOrden extends JPanel {
 
@@ -19,6 +22,8 @@ public class ImprimirInOrden extends JPanel {
 	JFrame ventana = null;
 	private JTable table;
 	private DefaultTableModel modelo;
+	private int[][] filas;
+	private Arbol arbol;
 	/**
 	 * Create the panel.
 	 */
@@ -28,6 +33,7 @@ public class ImprimirInOrden extends JPanel {
 		setBounds(0,0,359, 403);
 		setLayout(null);
 		this.ventana = ventana;
+		this.arbol = arbol;
 		
 		JLabel lblNewLabel = new JLabel("IMRPIMIR EN IN ORNDEN");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -46,8 +52,51 @@ public class ImprimirInOrden extends JPanel {
 		
 		modelo.addColumn("ORDEN");
 		modelo.addColumn("NUDAMERO AGREGADO");
-		
+		cargarDatos();
+		revalidate();
+        repaint();
 		
 		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("Actualizar Tabla");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actualizar();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(95, 210, 140, 37);
+		add(btnNewButton);
+	}
+	
+	public int[][] modificarFilas(){
+		filas = new int[arbol.cantidad()][2];
+		int[] consulta = arbol.imprimirEntre();
+		for(var i=0; i<filas.length; i++) {
+			filas[i][0] = i+1;
+			filas[i][1] = consulta[i];
+		}
+		
+		for(var i=0; i<filas.length; i++) {
+			System.out.println(filas[i][0]);
+			System.out.println(filas[i][1]);
+			System.out.println("-----------");
+		}
+		
+		return filas;
+	}
+	
+	public void cargarDatos() {
+	    modificarFilas();
+	    modelo.setRowCount(0);
+	    for (int i = 0; i < filas.length; i++) {
+	        modelo.addRow(new Object[]{filas[i][0], filas[i][1]});
+	    }
+	}
+	
+	public void actualizar() {
+	    cargarDatos(); 
+	    revalidate();
+	    repaint();
 	}
 }

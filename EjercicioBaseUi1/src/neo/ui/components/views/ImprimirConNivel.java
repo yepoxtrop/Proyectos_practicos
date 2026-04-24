@@ -2,6 +2,7 @@ package neo.ui.components.views;
 
 import java.awt.Color;
 import java.awt.Font;
+import neo.back.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +13,9 @@ import neo.back.Arbol;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ImprimirConNivel extends JPanel {
 
@@ -19,6 +23,8 @@ public class ImprimirConNivel extends JPanel {
 	JFrame ventana = null;
 	private JTable table;
 	private DefaultTableModel modelo;
+	private int[][] filas;
+	private Arbol arbol;
 	/**
 	 * Create the panel.
 	 */
@@ -28,6 +34,7 @@ public class ImprimirConNivel extends JPanel {
 		setBounds(0,0,359, 403);
 		setLayout(null);
 		this.ventana = ventana;
+		this.arbol = arbol;
 		
 		JLabel lblNewLabel = new JLabel("IMRPIMIR CON NIVEL");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -45,10 +52,59 @@ public class ImprimirConNivel extends JPanel {
 		table.setModel(modelo);
 		
 		modelo.addColumn("ORDEN");
-		modelo.addColumn("NUDAMERO AGREGADO");
+		modelo.addColumn("NUMERO AGREGADO");
 		modelo.addColumn("NIVEL");
-		
+		cargarDatos();
+		revalidate();
+        repaint();
 		
 		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("Actualizar Tabla");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actualizar();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(95, 210, 140, 37);
+		add(btnNewButton);
 	}
+	
+	
+	public int[][] modificarFilas(){
+		filas = new int[arbol.cantidad()][3];
+		Resultado valor = arbol.imprimirEntreConNivel();
+		int[] valNumero = valor.valores;
+		int[] valNivel = valor.valores2;
+		for(var i=0; i<filas.length; i++) {
+			filas[i][0] = i+1;
+			filas[i][1] = valNumero[i];
+			filas[i][2] = valNivel[i];
+		}
+		
+		for(var i=0; i<filas.length; i++) {
+			System.out.println(filas[i][0]);
+			System.out.println(filas[i][1]);
+			System.out.println("-----------");
+		}
+		
+		return filas;
+	}
+	
+	public void cargarDatos() {
+	    modificarFilas();
+	    modelo.setRowCount(0);
+	    for (int i = 0; i < filas.length; i++) {
+	        modelo.addRow(new Object[]{filas[i][0], filas[i][1], filas[i][2]});
+	    }
+	}
+	
+	public void actualizar() {
+	    cargarDatos(); 
+	    revalidate();
+	    repaint();
+	}
+	
+	
 }

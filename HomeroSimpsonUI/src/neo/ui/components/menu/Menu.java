@@ -39,7 +39,7 @@ public class Menu extends JPanel {
 		add(lblNewLabel_1);
 		
 		/** Botones */
-		JButton btnInsertarNodos = new JButton("Nuevos Valores");
+		JButton btnInsertarNodos = new JButton("Nuevos Trabajos");
 		btnInsertarNodos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "insertarNodo");
@@ -55,24 +55,24 @@ public class Menu extends JPanel {
 		});
 		add(btnImprimirEnInorden);
 		
-		JButton btnImprimirConNivel = new JButton("Imprimir con Nivel");
-		btnImprimirConNivel.addActionListener(new ActionListener() {
+		JButton btnImprimirEnPreOrden = new JButton("Imprimir PreOrden");
+		btnImprimirEnPreOrden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "imprimirConNivel");
 			}
 		});
-		add(btnImprimirConNivel);
+		add(btnImprimirEnPreOrden);
 		
 		
-		JButton btnNewButton = new JButton("Total de Nodos");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnImprimirEnPosOrden = new JButton("Imprimir PosOrden");
+		btnImprimirEnPosOrden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "totalNodos");
 			}
 		});
-		add(btnNewButton);
+		add(btnImprimirEnPosOrden);
 		
-		JButton btnTotalDeNodos = new JButton("Total de Nodos Hoja");
+		JButton btnTotalDeNodos = new JButton("Total de Trabajos");
 		btnTotalDeNodos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "totalNodosHoja");
@@ -80,37 +80,21 @@ public class Menu extends JPanel {
 		});
 		add(btnTotalDeNodos);
 		
-		JButton btnAlturaDelArbol = new JButton("Altura del Arbol");
-		btnAlturaDelArbol.addActionListener(new ActionListener() {
+		JButton btnTrabajoMayor = new JButton("Trabajo Mayor");
+		btnTrabajoMayor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "alturaArbol");
 			}
 		});
-		add(btnAlturaDelArbol);
+		add(btnTrabajoMayor);
 		
-		JButton btnValorMayor = new JButton("Valor Mayor");
-		btnValorMayor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layoutPanel.show(panelVistas, "mayorValor");
-			}
-		});
-		add(btnValorMayor);
-		
-		JButton btnBorrarNodoMenor = new JButton("Borrar Nodo Menor");
-		btnBorrarNodoMenor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layoutPanel.show(panelVistas, "eliminarValorMenor");
-			}
-		});
-		add(btnBorrarNodoMenor);
-		
-		JButton btnNewButton_3 = new JButton("Salir");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton btnSarlir = new JButton("Salir");
+		btnSarlir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "salir");
 			}
 		});
-		add(btnNewButton_3);
+		add(btnSarlir);
 	}
 
 }

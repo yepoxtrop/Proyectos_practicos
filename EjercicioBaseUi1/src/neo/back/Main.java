@@ -56,7 +56,9 @@ public class Main {
                 		break;
                 	case 4:
                 		System.out.println("Imprimir en orden");
-                		arbol.imprimirEntre();
+                		for(var i:arbol.imprimirEntre()) {
+                			System.out.println(i);
+                		}
                 		System.out.println("---------------------------------");
                 		break;
                 	case 5:
