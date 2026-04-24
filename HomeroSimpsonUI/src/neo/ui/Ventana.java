@@ -82,36 +82,23 @@ public class Ventana extends JFrame {
 		CardLayout layoutVentana = new CardLayout(0,0);
 		panelMain.setLayout(layoutVentana);
 		
-		InsertarNodos vistaInsertarNodo = new InsertarNodos(homeroSimpson, this);
-		panelMain.add(vistaInsertarNodo, "insertarNodo");
-		
 		ImprimirInOrden vistaConsulta1 = new ImprimirInOrden(homeroSimpson, this);
 		panelMain.add(vistaConsulta1, "imprimirInOrden");
 		
-		ImprimirConNivel vistaConsulta2 = new ImprimirConNivel(homeroSimpson, this);
-		panelMain.add(vistaConsulta2, "imprimirConNivel");
+		ImprimirPosOrden vistaConsulta2 = new ImprimirPosOrden(homeroSimpson, this);
+		panelMain.add(vistaConsulta2, "imprimirPosOrden");
+		
+		ImprimirPreOrden vistaConsulta3 = new ImprimirPreOrden(homeroSimpson, this);
+		panelMain.add(vistaConsulta3, "imprimirPreOrden");
 		
 		TotalNodos vistaTotalNodos = new TotalNodos(homeroSimpson, this);
 		panelMain.add(vistaTotalNodos, "totalNodos");
 		
-		TotalNodosHoja vistaTotalNodosHoja = new TotalNodosHoja(homeroSimpson, this);
-		panelMain.add(vistaTotalNodosHoja, "totalNodosHoja");
-		
-		AlturahomeroSimpson vistaAlturaAbol = new AlturahomeroSimpson(homeroSimpson, this);
-		panelMain.add(vistaAlturaAbol, "alturahomeroSimpson");
-		
 		ValorMenor vistaMayorValor = new  ValorMenor(homeroSimpson, this);
 		panelMain.add(vistaMayorValor, "mayorValor");
 		
-		EliminarNodo vistaEliminarValorMenor = new EliminarNodo(homeroSimpson, this);
-		panelMain.add(vistaEliminarValorMenor, "eliminarValorMenor");
-		
 		ExitApp vistaSalir = new ExitApp(this);
 		panelMain.add(vistaSalir, "salir");
-		
-		
-		
-		
 
 		/** Menu */
 		Menu menu = new Menu(panelMain, layoutVentana);

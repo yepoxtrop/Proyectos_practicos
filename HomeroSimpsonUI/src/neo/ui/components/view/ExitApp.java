@@ -31,7 +31,7 @@ public class ExitApp extends JPanel {
 			"/neo/ui/media/imagen.jpg",
 			"/neo/ui/media/gato.png",
 			"/neo/ui/media/gato2.jpg",
-			"/neo/ui/media/oso.jpg"
+			"/neo/ui/media/homero.jpeg"
 		};
 	
 	int valor = 0; 
@@ -70,7 +70,7 @@ public class ExitApp extends JPanel {
 		
 		JLabel labelImagen = new JLabel("");
 		labelImagen.setBounds(79, 54, 200, 200);
-		ImageIcon imagen = new ImageIcon(Ventana.class.getResource(arreglo_path_img[1]));
+		ImageIcon imagen = new ImageIcon(Ventana.class.getResource(arreglo_path_img[3]));
 		Image img = imagen.getImage();
 		Image nuevaImagen = img.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 		ImageIcon imagenMejorada = new ImageIcon(nuevaImagen);

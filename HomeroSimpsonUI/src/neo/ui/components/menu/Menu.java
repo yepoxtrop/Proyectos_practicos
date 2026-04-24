@@ -58,7 +58,7 @@ public class Menu extends JPanel {
 		JButton btnImprimirEnPreOrden = new JButton("Imprimir PreOrden");
 		btnImprimirEnPreOrden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layoutPanel.show(panelVistas, "imprimirConNivel");
+				layoutPanel.show(panelVistas, "imprimirPreOrden");
 			}
 		});
 		add(btnImprimirEnPreOrden);
@@ -67,7 +67,7 @@ public class Menu extends JPanel {
 		JButton btnImprimirEnPosOrden = new JButton("Imprimir PosOrden");
 		btnImprimirEnPosOrden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layoutPanel.show(panelVistas, "totalNodos");
+				layoutPanel.show(panelVistas, "imprimirPosOrden");
 			}
 		});
 		add(btnImprimirEnPosOrden);
