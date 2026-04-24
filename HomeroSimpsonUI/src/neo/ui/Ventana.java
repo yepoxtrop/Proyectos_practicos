@@ -82,6 +82,9 @@ public class Ventana extends JFrame {
 		CardLayout layoutVentana = new CardLayout(0,0);
 		panelMain.setLayout(layoutVentana);
 		
+		InsertarNodos InsertarTrabajo = new InsertarNodos(homeroSimpson, this);
+		panelMain.add(InsertarTrabajo, "insertarNodo");
+		
 		ImprimirInOrden vistaConsulta1 = new ImprimirInOrden(homeroSimpson, this);
 		panelMain.add(vistaConsulta1, "imprimirInOrden");
 		
