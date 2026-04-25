@@ -80,7 +80,7 @@ public class Menu extends JPanel {
 		});
 		add(btnTotalDeNodos);
 		
-		JButton btnTrabajoMayor = new JButton("Trabajo Mayor");
+		JButton btnTrabajoMayor = new JButton("Trabajo Menor");
 		btnTrabajoMayor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layoutPanel.show(panelVistas, "mayorValor");

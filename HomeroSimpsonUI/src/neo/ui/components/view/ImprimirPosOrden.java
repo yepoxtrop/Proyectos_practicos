@@ -1,5 +1,6 @@
 package neo.ui.components.view;
 
+import neo.back.*;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -9,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import neo.back.HomeroSimpson;
+import neo.back.Resultados;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
@@ -23,6 +26,7 @@ public class ImprimirPosOrden extends JPanel {
 	private JTable table;
 	private DefaultTableModel modelo;
 	private int[][] filas;
+	private String[] filasStr;
 	private HomeroSimpson homeroSimpson;
 	/**
 	 * Create the panel.
@@ -72,12 +76,17 @@ public class ImprimirPosOrden extends JPanel {
 	}
 	
 	public int[][] modificarFilas(){
-		filas = new int[homeroSimpson.getCantidad()][2];
-		//int[] consulta = homeroSimpson.imprimirInOrden();
-		int[] consulta = new int[5];
+		filas = new int[homeroSimpson.getCantidad()][3];
+		filasStr = new String[homeroSimpson.getCantidad()];
+		Resultados peticion = homeroSimpson.imprimirPostOrden();
+		String[] consulta1 = peticion.arrayTrabajos;
+		int[] consulta2 = peticion.arrayDiasTrabajados;
+		int[] consulta3 = peticion.arrayTemporadas;
 		for(var i=0; i<filas.length; i++) {
 			filas[i][0] = i+1;
-			filas[i][1] = consulta[i];
+			filasStr[i] = consulta1[i];
+			filas[i][1] = consulta2[i];
+			filas[i][2] = consulta3[i];
 		}
 		
 		for(var i=0; i<filas.length; i++) {
@@ -90,10 +99,11 @@ public class ImprimirPosOrden extends JPanel {
 	}
 	
 	public void cargarDatos() {
+		if (homeroSimpson.getCantidad() == 0) return; 
 	    modificarFilas();
 	    modelo.setRowCount(0);
 	    for (int i = 0; i < filas.length; i++) {
-	        modelo.addRow(new Object[]{filas[i][0], filas[i][1]});
+	        modelo.addRow(new Object[]{filas[i][0], filasStr[i], filas[i][1], filas[i][2]});
 	    }
 	}
 	

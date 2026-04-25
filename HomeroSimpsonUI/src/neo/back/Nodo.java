@@ -78,6 +78,7 @@ public class Nodo {
     public int getDuracionTrabajo(){
         return  this.duracionTrabajo;
     }
+    
 
     /**
      * @description Método get para número de temporada

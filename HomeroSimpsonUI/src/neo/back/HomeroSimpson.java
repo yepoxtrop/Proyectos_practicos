@@ -23,6 +23,7 @@ public class HomeroSimpson {
      */
     public HomeroSimpson(){
         this.homeroSimpson = new Nodo("Homero Simpson", 1, 100000);
+        this.cantidad = 1;
     }
 
     /**
@@ -86,63 +87,84 @@ public class HomeroSimpson {
      * @description Metodo que imprime en pre orden segun un nodo de referencia
      * @param nodoAuxiliar {Nodo} Nodo referencia
      */
-    public void imprimirPreOrden(Nodo nodoAuxiliar){
+    private int imprimirPreOrden(Nodo nodoAuxiliar, int[] arrayTemporadas, int[] arrayDiasTrabajados, String[] arrayTrabajos, int posicion) {
 
         if (nodoAuxiliar != null)
         {
-            System.out.println(nodoAuxiliar.getNombreTrabajo());
-            imprimirPreOrden (nodoAuxiliar.getNodoIzquierdo());
-            imprimirPreOrden (nodoAuxiliar.getNodoDerecho());
+            arrayTemporadas[posicion] = nodoAuxiliar.getNumeroTemporada();
+            arrayDiasTrabajados[posicion] = nodoAuxiliar.getDuracionTrabajo();
+            arrayTrabajos[posicion] = nodoAuxiliar.getNombreTrabajo();
+            posicion++;
+            posicion = imprimirPreOrden(nodoAuxiliar.getNodoIzquierdo(), arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, posicion);
+            posicion = imprimirPreOrden(nodoAuxiliar.getNodoDerecho(), arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, posicion);
         }
+        return posicion;
     };
 
     /**
      * @description Metodo que imprime en pre orden desde la raiz 
      */
-    public void imprimirPreOrden(){
-        imprimirPreOrden(this.homeroSimpson);
+    public Resultados imprimirPreOrden() {
+        int[] arrayTemporadas = new int[cantidad];
+        int[] arrayDiasTrabajados = new int[cantidad];
+        String[] arrayTrabajos = new String[cantidad];
+        imprimirPreOrden(this.homeroSimpson, arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, 0);
+        return new Resultados(arrayTemporadas, arrayDiasTrabajados, arrayTrabajos);
     };
 
     /**
      * @description Metodo que imprime en in orden segun un nodo de referencia
      * @param nodoAuxiliar {Nodo} Nodo referencia
      */
-    public void imprimirInOrden(Nodo nodoAuxiliar){
+    private int imprimirInOrden(Nodo nodoAuxiliar, int[] arrayTemporadas, int[] arrayDiasTrabajados, String[] arrayTrabajos, int posicion) {
         if (nodoAuxiliar != null){
-            imprimirInOrden(nodoAuxiliar.getNodoIzquierdo());
-            System.out.println(nodoAuxiliar.getNombreTrabajo());
-            imprimirInOrden(nodoAuxiliar.getNodoDerecho());
+            posicion = imprimirInOrden(nodoAuxiliar.getNodoIzquierdo(), arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, posicion);
+            arrayTemporadas[posicion] = nodoAuxiliar.getNumeroTemporada();
+            arrayDiasTrabajados[posicion] = nodoAuxiliar.getDuracionTrabajo();
+            arrayTrabajos[posicion] = nodoAuxiliar.getNombreTrabajo();
+            posicion++;
+            posicion = imprimirInOrden(nodoAuxiliar.getNodoDerecho(), arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, posicion);
         }
+        return posicion;
     };
 
     /**
      * @description Metodo que imprime en in orden desde la raiz 
      */
-    public void imprimirInOrden(){
-        imprimirInOrden(this.homeroSimpson);
+    public Resultados imprimirInOrden() {
+        int[] arrayTemporadas = new int[cantidad];
+        int[] arrayDiasTrabajados = new int[cantidad];
+        String[] arrayTrabajos = new String[cantidad];
+        imprimirInOrden(this.homeroSimpson, arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, 0);
+        return new Resultados(arrayTemporadas, arrayDiasTrabajados, arrayTrabajos);
     };
 
     /**
      * @description Metodo que imprime en pos orden segun un nodo de referencia
      * @param nodoAuxiliar {Nodo} Nodo referencia
      */
-    public void imprimirPostOrden(Nodo nodoAuxiliar){
+    private int imprimirPostOrden(Nodo nodoAuxiliar, int[] arrayTemporadas, int[] arrayDiasTrabajados, String[] arrayTrabajos, int posicion) {
         if (nodoAuxiliar != null)
         {
-            imprimirPostOrden(nodoAuxiliar.getNodoIzquierdo());
-            imprimirPostOrden(nodoAuxiliar.getNodoDerecho());
-            System.out.println(nodoAuxiliar.getNombreTrabajo());
+            posicion = imprimirPostOrden(nodoAuxiliar.getNodoIzquierdo(), arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, posicion);
+            posicion = imprimirPostOrden(nodoAuxiliar.getNodoDerecho(), arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, posicion);
+            arrayTemporadas[posicion] = nodoAuxiliar.getNumeroTemporada();
+            arrayDiasTrabajados[posicion] = nodoAuxiliar.getDuracionTrabajo();
+            arrayTrabajos[posicion] = nodoAuxiliar.getNombreTrabajo();
+            posicion++;
         }
-
-
+        return posicion;
     };
 
     /**
      * @description Metodo que imprime en pos orden desde la raiz 
      */
-    public void imprimirPostOrden ()
-    {
-        imprimirPostOrden (this.homeroSimpson);
+    public Resultados imprimirPostOrden() {
+        int[] arrayTemporadas = new int[cantidad];
+        int[] arrayDiasTrabajados = new int[cantidad];
+        String[] arrayTrabajos = new String[cantidad];
+        imprimirPostOrden(this.homeroSimpson, arrayTemporadas, arrayDiasTrabajados, arrayTrabajos, 0);
+        return new Resultados(arrayTemporadas, arrayDiasTrabajados, arrayTrabajos);
     }
 
     /**
